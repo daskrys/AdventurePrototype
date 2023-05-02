@@ -53,16 +53,16 @@ class AdventureScene extends Phaser.Scene {
 
     }
     // custom function for creating a typing animation
-    typeWrite(text, content, index, speed) 
+    typeWrite(textBox, textString, index, speed) 
     {
         
-        if (index < content.length) 
+        if (index < textString.length) 
         {
-            text.text += content.charAt(index);
+            textBox.text += textString.charAt(index);
             index += 1;
 
             this.time.delayedCall(speed, () => {
-                this.typeWrite(text, content, index, speed);
+                this.typeWrite(textBox, textString, index, speed);
             });
         }
     }
