@@ -94,11 +94,11 @@ class Demo2 extends AdventureScene {
     }
 }
 
-class Demo3 extends Phaser.Scene {
+class Demo3 extends AdventureScene {
 
 }
 
-class Demo4 extends Phaser.Scene {
+class Demo4 extends AdventureScene {
 
 }
 
@@ -106,9 +106,20 @@ class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
     }
-    create() {
-        this.add.text(50,50, "Adventure awaits!").setFontSize(50);
-        this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
+
+    preload ()
+    {
+        this.load.image('studio', "assets/MegaGhostStudios.png");
+    } 
+
+    create () 
+    {
+        this.cameras.main.setBackgroundColor('#4F4B5A');
+        //this.add.text(50,50, "Adventure awaits!").setFontSize(50);
+        this.studio = this.add.image(960, 540, 'studio');
+        //this.studio.setScale(0.70);
+       this.add.text(750,950, "Click anywhere to begin.", {color: '#000000'}).setFontSize(30);
+       
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('demo1'));
@@ -122,7 +133,7 @@ class Outro extends Phaser.Scene {
     }
     create() {
         this.add.text(50, 50, "That's all!").setFontSize(50);
-        this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
+        this.add.text(830,850, "Click anywhere to restart.").setFontSize(20);
         this.input.on('pointerdown', () => this.scene.start('intro'));
     }
 }
@@ -135,7 +146,8 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Demo1, Demo2, Outro],
+    scene:[Demo1],
+    //scene: [Intro, Demo1, Demo2 ,Demo3, Demo4, Outro],
     title: "Adventure Game",
 });
 
