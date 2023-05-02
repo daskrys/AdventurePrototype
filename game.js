@@ -1,3 +1,5 @@
+//const Phaser = require("phaser");
+
 class Demo1 extends AdventureScene {
     constructor() {
         super("demo1", "First Room");
@@ -90,6 +92,14 @@ class Demo2 extends AdventureScene {
             })
             .on('pointerdown', () => this.gotoScene('outro'));
     }
+}
+
+class Demo3 extends Phaser.Scene {
+
+}
+
+class Demo4 extends Phaser.Scene {
+
 }
 
 class Intro extends Phaser.Scene {
