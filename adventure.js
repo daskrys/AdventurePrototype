@@ -67,6 +67,11 @@ class AdventureScene extends Phaser.Scene {
         }
     }
 
+    movement (newSprite, newKeys)
+    {
+        this.newKeys = this.input.keyboard.addKeys("W, A, S, D");
+    }
+
     showMessage(message) {
         this.messageBox.setText(message);
         this.tweens.add({

@@ -94,12 +94,18 @@ class Demo2 extends AdventureScene {
     }
 }
 
-class Demo3 extends AdventureScene {
-
+class Demo3 extends AdventureScene 
+{
+    constructor() {
+        super("demo3", "Third Scene Room");
+    }
 }
 
-class Demo4 extends AdventureScene {
-
+class Demo4 extends AdventureScene 
+{
+    constructor() {
+        super("demo4", "Fourth Scene Room");
+    }
 }
 
 class Intro extends Phaser.Scene {
@@ -151,3 +157,30 @@ const game = new Phaser.Game({
     title: "Adventure Game",
 });
 
+/*
+    /*const speed = 4;
+
+        // Update the ghost's position based on the keys being pressed this is for controls
+        // commented out for animation
+        if (this.keys.W.isDown) 
+        {
+            this.ghost.y -= speed;
+        }
+
+        if (this.keys.A.isDown) 
+        {
+            this.ghost.x -= speed;
+            this.ghost.flipX = false;
+        }
+
+        if (this.keys.S.isDown) 
+        {
+            this.ghost.y += speed;
+        }
+
+        if (this.keys.D.isDown) 
+        {
+            this.ghost.x += speed;
+            this.ghost.flipX = true;
+        }
+*/
