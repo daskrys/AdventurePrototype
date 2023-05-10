@@ -2,7 +2,7 @@
 
 class Demo1 extends AdventureScene {
     constructor() {
-        super("demo1", "First Room");
+        super("demo1", "Your Room");
     }
 
     preload () 
@@ -15,13 +15,13 @@ class Demo1 extends AdventureScene {
         let textBox = this.add.text(500, 50, "");
         textBox.setFontSize(55);
         let rand = this.randomNum();
-        let newText = "Welcome Asset #";
+        let newText = "Welcome Asset # " + rand;
 
         this.typeWrite(textBox, newText, 0, 150);
         let clip = this.add.text(this.w * 0.3, this.w * 0.3, "🧠 the brain")
             .setFontSize(this.s * 2)
             .setInteractive()
-            .on('pointerover', () => this.showMessage("Metal, bent."))
+            .on('pointerover', () => this.showMessage("Just you and your brain in this room."))
             .on('pointerdown', () => {
                 this.showMessage("No touching!");
                 this.tweens.add({
@@ -33,6 +33,36 @@ class Demo1 extends AdventureScene {
                     duration: 100
                 });
             });
+
+        let note1 = this.add.text(this.w * 0.6, this.w * 0.4, "🗒️ Note 1")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("1083 days since.. *the rest of the note is missing*");
+            })
+            .on('pointerdown', () => {
+
+            });
+
+        let note2 = this.add.text(this.w * 0.5, this.w * 0.22, "🗒️ Note 2")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("This is a note");
+            })
+            .on('pointerdown', () => {
+
+            });     
+
+        let note3 = this.add.text(this.w * 0.1, this.w * 0.35, "🗒️ Note 3")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("( ͡° ͜ʖ ͡°)");
+            })
+            .on('pointerdown', () => {
+
+            }); 
 
         let key = this.add.text(this.w * 0.5, this.w * 0.1, "🔑 key")
             .setFontSize(this.s * 2)
@@ -50,7 +80,7 @@ class Demo1 extends AdventureScene {
                     duration: 500,
                     onComplete: () => key.destroy()
                 });
-            })
+            });
 
         let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 locked door")
             .setFontSize(this.s * 2)
