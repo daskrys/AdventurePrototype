@@ -5,9 +5,20 @@ class Demo1 extends AdventureScene {
         super("demo1", "First Room");
     }
 
+    preload () 
+    {
+        this.load.image('ghost', 'assets/Mega-Ghost.png');
+    }
+
     onEnter() {
 
-        let clip = this.add.text(this.w * 0.3, this.w * 0.3, "📎 paperclip")
+        let textBox = this.add.text(500, 50, "");
+        textBox.setFontSize(55);
+        let rand = this.randomNum();
+        let newText = "Welcome Asset #";
+
+        this.typeWrite(textBox, newText, 0, 150);
+        let clip = this.add.text(this.w * 0.3, this.w * 0.3, "🧠 the brain")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => this.showMessage("Metal, bent."))
@@ -60,6 +71,36 @@ class Demo1 extends AdventureScene {
                 }
             })
 
+    }
+
+    update () 
+    {
+        /*
+        const speed = 4;
+
+        // Update the ghost's position based on the keys being pressed this is for controls
+        // commented out for animation
+        if (this.keys.W.isDown) 
+        {
+            this.ghost.y -= speed;
+        }
+
+        if (this.keys.A.isDown) 
+        {
+            this.ghost.x -= speed;
+            this.ghost.flipX = false;
+        }
+
+        if (this.keys.S.isDown) 
+        {
+            this.ghost.y += speed;
+        }
+
+        if (this.keys.D.isDown) 
+        {
+            this.ghost.x += speed;
+            this.ghost.flipX = true;
+        }*/
     }
 }
 
