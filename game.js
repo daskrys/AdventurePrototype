@@ -1,7 +1,8 @@
 //const Phaser = require("phaser");
 
 class Demo1 extends AdventureScene {
-    constructor() {
+    constructor() 
+    {
         super("demo1", "Your Room");
     }
 
@@ -12,7 +13,7 @@ class Demo1 extends AdventureScene {
 
     onEnter() {
 
-        let textBox = this.add.text(500, 50, "");
+        let textBox = this.add.text(350, 50, "");
         textBox.setFontSize(55);
         let rand = this.randomNum();
         let newText = "Welcome Asset # " + rand;
@@ -48,7 +49,7 @@ class Demo1 extends AdventureScene {
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
-                this.showMessage("This is a note");
+                this.showMessage("blue 🔵");
             })
             .on('pointerdown', () => {
 
@@ -136,7 +137,7 @@ class Demo1 extends AdventureScene {
 
 class Demo2 extends AdventureScene {
     constructor() {
-        super("demo2", "The second room has a long name (it truly does).");
+        super("demo2", "This is just a long hallway.");
     }
     onEnter() {
         this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
@@ -162,13 +163,48 @@ class Demo2 extends AdventureScene {
                 });
             })
             .on('pointerdown', () => this.gotoScene('outro'));
+
+            let textBox = this.add.text(325, 50, "");
+            textBox.setFontSize(55);
+            //let rand = this.randomNum();
+            let newText = "Where are you going Asset.";
+    
+            this.typeWrite(textBox, newText, 0, 150);
+
+            let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 Door")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {this.showMessage("A door at the end of the hallway. It's unlocked.");})
+            .on('pointerdown', () => {this.gotoScene('demo3');});
     }
 }
 
 class Demo3 extends AdventureScene 
 {
-    constructor() {
+    constructor () 
+    {
         super("demo3", "Third Scene Room");
+    }
+
+    onEnter () 
+    {
+        let textBox = this.add.text(170, 50, "");
+            textBox.setFontSize(55);
+            //let rand = this.randomNum();
+            let newText = "Don't walk through that door.";
+            let newText2 = "Just know, there is no coming back."
+    
+            this.typeWrite(textBox, newText, 0, 150);
+            this.time.delayedCall(8000, () => {
+                textBox.text = "";
+                this.time.delayedCall(1000, () => {this.typeWrite(textBox, newText2, 0, 150)});
+            });
+
+            let door = this.add.text(this.w * 0.11, this.w * 0.25, "🚪 Door")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {this.showMessage("A door at the end of the hallway. It's unlocked.");})
+            .on('pointerdown', () => {this.gotoScene('demo4');});
     }
 }
 
@@ -180,7 +216,8 @@ class Demo4 extends AdventureScene
 }
 
 class Intro extends Phaser.Scene {
-    constructor() {
+    constructor() 
+    {
         super('intro')
     }
 
@@ -205,11 +242,12 @@ class Intro extends Phaser.Scene {
 }
 
 class Outro extends Phaser.Scene {
-    constructor() {
+    constructor() 
+    {
         super('outro');
     }
     create() {
-        this.add.text(50, 50, "That's all!").setFontSize(50);
+        this.add.text(50, 50, "That's 2!").setFontSize(50);
         this.add.text(830,850, "Click anywhere to restart.").setFontSize(20);
         this.input.on('pointerdown', () => this.scene.start('intro'));
     }
@@ -223,7 +261,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene:[Demo1],
+    scene:[Demo2, Demo3],
     //scene: [Intro, Demo1, Demo2 ,Demo3, Demo4, Outro],
     title: "Adventure Game",
 });
