@@ -140,7 +140,7 @@ class Demo2 extends AdventureScene {
         super("demo2", "This is just a long hallway.");
     }
     onEnter() {
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
+        /*this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -148,21 +148,7 @@ class Demo2 extends AdventureScene {
             })
             .on('pointerdown', () => {
                 this.gotoScene('demo1');
-            });
-
-        let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage('*giggles*');
-                this.tweens.add({
-                    targets: finish,
-                    x: this.s + (this.h - 2 * this.s) * Math.random(),
-                    y: this.s + (this.h - 2 * this.s) * Math.random(),
-                    ease: 'Sine.inOut',
-                    duration: 500
-                });
-            })
-            .on('pointerdown', () => this.gotoScene('outro'));
+            });*/
 
             let textBox = this.add.text(325, 50, "");
             textBox.setFontSize(55);
@@ -188,27 +174,53 @@ class Demo3 extends AdventureScene
 
     onEnter () 
     {
+        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
+        .setFontSize(this.s * 2)
+        .setInteractive()
+        .on('pointerover', () => {
+            this.showMessage("You've got no other choice, really.");
+        })
+        .on('pointerdown', () => {
+            this.gotoScene('demo2');
+        });
+
         let textBox = this.add.text(170, 50, "");
             textBox.setFontSize(55);
             //let rand = this.randomNum();
             let newText = "Don't walk through that door.";
-            let newText2 = "Just know, there is no coming back."
+            let newText2 = "Just know, there is no coming back.";
+            let newText3 = "Very well Asset, make your choice.";
     
             this.typeWrite(textBox, newText, 0, 150);
             this.time.delayedCall(8000, () => {
                 textBox.text = "";
-                this.time.delayedCall(1000, () => {this.typeWrite(textBox, newText2, 0, 150)});
+                this.time.delayedCall(1000, () => {
+                    this.typeWrite(textBox, newText2, 0, 150)
+                    this.time.delayedCall(7000, () => {
+                        textBox.text = "";
+                        this.typeWrite(textBox, newText3, 0, 150);
+                    })
+                });
             });
 
             let door = this.add.text(this.w * 0.11, this.w * 0.25, "🚪 Door")
             .setFontSize(this.s * 2)
             .setInteractive()
-            .on('pointerover', () => {this.showMessage("A door at the end of the hallway. It's unlocked.");})
-            .on('pointerdown', () => {this.gotoScene('demo4');});
+            .on('pointerover', () => {
+                this.showMessage("Another door. Hmm");
+                this.tweens.add({
+                    targets: door,
+                    x: this.s + (this.h - 2 * this.s) * Math.random(),
+                    y: this.s + (this.h - 2 * this.s) * Math.random(),
+                    ease: 'Sine.inOut',
+                    duration: 500
+                });
+            })
+            .on('pointerdown', () => this.gotoScene('outro'));
     }
 }
 
-class Demo4 extends AdventureScene 
+class Demo4 extends AdventureScene // gonna scrap scene
 {
     constructor() {
         super("demo4", "Fourth Scene Room");
@@ -247,9 +259,17 @@ class Outro extends Phaser.Scene {
         super('outro');
     }
     create() {
-        this.add.text(50, 50, "That's 2!").setFontSize(50);
-        this.add.text(830,850, "Click anywhere to restart.").setFontSize(20);
-        this.input.on('pointerdown', () => this.scene.start('intro'));
+        this.cameras.main.setBackgroundColor('#4F4B5A');
+
+        let credits = this.add.text(650, 540, "Programming & Art - Christian Perez \nMusic & Sound - Christian Perez \nTools Used - Adobe Illustrator, GarageBand");
+        credits.setFontSize(30);
+
+        this.tweens.add({
+            targets: credits,
+            y: {from: 540, to: 150},
+            ease: 'linear',
+            duration: 2500,
+        })
     }
 }
 
@@ -261,9 +281,9 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene:[Demo2, Demo3],
-    //scene: [Intro, Demo1, Demo2 ,Demo3, Demo4, Outro],
-    title: "Adventure Game",
+    //scene:[Outro],
+    scene: [Intro, Demo1, Demo2 ,Demo3, Outro],
+    title: "what is this place",
 });
 
 /*
