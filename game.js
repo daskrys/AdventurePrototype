@@ -261,7 +261,7 @@ class Outro extends Phaser.Scene {
     create() {
         this.cameras.main.setBackgroundColor('#4F4B5A');
 
-        let credits = this.add.text(650, 540, "Programming & Art - Christian Perez \nMusic & Sound - Christian Perez \nTools Used - Adobe Illustrator, GarageBand");
+        let credits = this.add.text(450, 540, "Programming & Art - Christian Perez \nMusic & Sound - Christian Perez \nTools Used - Adobe Illustrator, GarageBand \nYoinked From Professor Adam @ https://github.com/rndmcnlly/AdventurePrototype");
         credits.setFontSize(30);
 
         this.tweens.add({
@@ -281,8 +281,8 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    //scene:[Outro],
-    scene: [Intro, Demo1, Demo2 ,Demo3, Outro],
+    scene:[Outro],
+    //scene: [Intro, Demo1, Demo2 ,Demo3, Outro],
     title: "what is this place",
 });
 
