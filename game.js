@@ -281,8 +281,8 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene:[Outro],
-    //scene: [Intro, Demo1, Demo2 ,Demo3, Outro],
+    //scene:[Outro],
+    scene: [Intro, Demo1, Demo2 ,Demo3, Outro],
     title: "what is this place",
 });
 
